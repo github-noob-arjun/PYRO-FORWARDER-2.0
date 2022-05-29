@@ -86,7 +86,7 @@ async def forward(bot, message):
                             caption=caption,
                             message_id=message_id
                             )
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(0.5)
                     try:
                         status.add(1)
                     except:
@@ -111,7 +111,7 @@ async def forward(bot, message):
                             caption=caption,
                             message_id=message_id
                             )
-                    await asyncio.sleep(1)
+                    await asyncio.sleep(0.5)
 
 
                 except Exception as e:
