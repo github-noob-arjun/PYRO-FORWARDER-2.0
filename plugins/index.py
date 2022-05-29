@@ -145,6 +145,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
 
 
     await query.message.delete()
+    total_files = 0
     while True:
         try:
             get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
@@ -201,6 +202,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             message_id=msg.message_id
             try:
                 await save_data(id, channel, message_id, methord, msg_caption, file_type)
+                total_files += 1
             except Exception as e:
                 print(e)
                 await bot.send_message(OWNER, f"LOG-Error-{e}")
@@ -213,7 +215,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit(text=f"Total Indexed : <code>{msg_count}</code>\nCurrent skip_no:<code>{new_skip_no}</code>\nLast edited at {ISTIME}")
+                    await m.edit(text=f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{msg_count}</code>\n\nCurrent skip no : <code>{new_skip_no}</code>\nLast indexed : <code>{ISTIME}</code>")
                     mcount -= 100
                 except FloodWait as e:
                     print(f"Floodwait {e.x}")
