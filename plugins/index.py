@@ -210,9 +210,9 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             msg_count += 1
             mcount += 1
             new_skip_no=str(skip_no+msg_count)
-            await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\n\nCurrent skip no : <code>{new_skip_no}</code>")
+            #await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\n\nCurrent skip no : <code>{new_skip_no}</code>")
             print(f"Total Indexed : {msg_count} - Current SKIP_NO: {new_skip_no}")
-            if mcount == 100:
+            if mcount == 10:
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
