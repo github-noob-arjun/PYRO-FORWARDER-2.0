@@ -128,7 +128,7 @@ async def forward(bot, message):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\nForwarded Using: Bot\nSleeping for {1} Seconds\nLast Forwarded at {ISTIME}")
+                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: Bot\n\nSleeping for {1} Seconds\n\nLast Forwarded at {ISTIME}")
                 except Exception as e:
                     print(e)
                     await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
