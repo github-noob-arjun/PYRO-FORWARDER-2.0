@@ -245,7 +245,7 @@ async def forward(bot, message):
                                 try:
                                     datetime_ist = datetime.now(IST)
                                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\nForwarded Using: User\nSleeping for {mainsleep} Seconds\nLast Forwarded at {ISTIME}")
+                                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: User\n\nSleeping for {mainsleep} Seconds\n\nLast Forwarded at {ISTIME}")
                                 except FloodWait as e:
                                     print(e)
                                     await bot.send_message(chat_id=OWNER, text=f"Floodwait of {e} sec")
