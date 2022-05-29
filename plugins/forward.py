@@ -117,13 +117,13 @@ async def forward(bot, message):
                 except Exception as e:
                     print(e)
                     pass
-                await Data.collection.delete_one({
-                    'channel': channel,
-                    'message_id': message_id,
-                    'file_type': file_type,
-                    'methord': "bot",
-                    'use': "forward"
-                    })
+               # await Data.collection.delete_one({
+               #     'channel': channel,
+               #     'message_id': message_id,
+               #     'file_type': file_type,
+               #     'methord': "bot",
+               #     'use': "forward"
+               #     })
                 MessageCount += 1
                 try:
                     datetime_ist = datetime.now(IST)
@@ -220,13 +220,13 @@ async def forward(bot, message):
                                         print(e)
                                         pass
 
-                                await Data.collection.delete_one({
-                                    'channel': str(channel),
-                                    'message_id': message_id,
-                                    'methord': "user",
-                                    'use': "forward",
-                                    'file_type': file_type
-                                    })
+                               # await Data.collection.delete_one({
+                               #     'channel': str(channel),
+                               #     'message_id': message_id,
+                               #     'methord': "user",
+                               #     'use': "forward",
+                               #     'file_type': file_type
+                               #     })
                                 try:
                                     status.add(1)
                                 except:
