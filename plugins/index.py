@@ -231,7 +231,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     print(f"Floodwait {e.x}")
                     pass
                 except Exception as e:
-                    await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
+                    #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
         await m.edit(f"✓ Succesfully Indexed <code>{total_files}</code> messages.\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
