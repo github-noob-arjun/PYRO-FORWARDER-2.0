@@ -225,7 +225,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
+                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nIndexing From : {FROM}\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
                     mcount -= 5
                 except FloodWait as e:
                     print(f"Floodwait {e.x}")
@@ -235,7 +235,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
-        await m.edit(f"✓ Succesfully Indexed <code>{total_files}</code> messages.\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
+        await m.edit(f"✓ Succesfully Indexed <code>{total_files}</code> messages.\n\nIndexed from : {FROM}\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
     except Exception as e:
         print(e)
         await m.edit(text=f"Error: {e}")
