@@ -54,6 +54,8 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
+    datetime_ist = datetime.now(IST)
+    FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m=await bot.send_message(chat_id=OWNER, text="Started Forwarding")
     global MessageCount
     mcount = random.randint(10000, 15300)
@@ -128,7 +130,7 @@ async def forward(bot, message):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: Bot\n\nSleeping for {1} Seconds\n\nLast Forwarded at {ISTIME}")
+                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: Bot\n\nSleeping for {1} Seconds\n\nForward Start at : {FSTIME}\n\nLast Forwarded at {ISTIME}")
                 except Exception as e:
                     print(e)
                     await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
@@ -245,7 +247,7 @@ async def forward(bot, message):
                                 try:
                                     datetime_ist = datetime.now(IST)
                                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: User\n\nSleeping for {mainsleep} Seconds\n\nLast Forwarded at {ISTIME}")
+                                    await m.edit(text=f"Total Forwarded : <code>{MessageCount}</code>\n\nForwarded Using: User\n\nSleeping for {mainsleep} Seconds\n\nForward started at : {FSTIME}\n\nLast Forwarded at {ISTIME}")
                                 except FloodWait as e:
                                     print(e)
                                     await bot.send_message(chat_id=OWNER, text=f"Floodwait of {e} sec")
@@ -268,7 +270,7 @@ async def forward(bot, message):
                                 try:
                                     datetime_ist = datetime.now(IST)
                                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                                    await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {csleep} Seconds.\nLast Forwarded at {ISTIME}")
+                                    await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {csleep} Seconds.\n\nForward started at : {FSTIME}\nLast Forwarded at {ISTIME}")
                                 except Exception as e:
                                     await bot.send_message(OWNER, e)
                                     print(e)
@@ -291,7 +293,7 @@ async def forward(bot, message):
                             try:
                                 datetime_ist = datetime.now(IST)
                                 ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                                await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {bsl} seconds.\nLast Forwarded at {ISTIME}")
+                                await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {bsl} seconds.\n\nForward started at : {FSTIME}\nLast Forwarded at {ISTIME}")
                             except Exception as e:
                                 await bot.send_message(OWNER, e)
                                 print(e)
@@ -314,7 +316,7 @@ async def forward(bot, message):
                         try:
                             datetime_ist = datetime.now(IST)
                             ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                            await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {asl} seconds.\nLast Forwarded at {ISTIME}")
+                            await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {asl} seconds.\n\nForward started at : {FSTIME}\nLast Forwarded at {ISTIME}")
                         except Exception as e:
                             await bot.send_message(OWNER, e)
                             print(e)
@@ -336,7 +338,7 @@ async def forward(bot, message):
                     try:
                         datetime_ist = datetime.now(IST)
                         ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                        await m.edit(text=f"You have send {MessageCount} messages.\nWaiting for {msl} seconds.\nLast Forwarded at {ISTIME}")
+                        await m.edit(text=f"You have send {MessageCount} messages.\n\nForward started at : {FSTIME}\nWaiting for {msl} seconds.\nLast Forwarded at {ISTIME}")
                     except Exception as e:
                         
                         await bot.send_message(OWNER, e)
