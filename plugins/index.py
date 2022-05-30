@@ -115,7 +115,7 @@ async def run(bot, message):
             return
         tgchannel=tgid.text
         if tgchannel.startswith("-100"):
-            global channel_id_
+            global tgchannel_id_
             tgchannel_id_=int(tgchannel)
             break
         else:
@@ -184,6 +184,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     duplicate = 0
     errors = 0
     FROM=channel_id_
+    TARGET=tgchannel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
             if channel_type == "public":
