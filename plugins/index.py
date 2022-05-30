@@ -110,7 +110,7 @@ async def run(bot, message):
     buttons=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("All Messages", callback_data="all")
+                InlineKeyboardButton("All Media", callback_data="all")
             ],
             [
                 InlineKeyboardButton("Document", callback_data="docs"),
@@ -160,7 +160,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         else:
             caption=input
         break
-
+    datetime_ist = datetime.now(IST)
+    SSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m = await bot.send_message(
         text="Indexing Started",
         chat_id=query.from_user.id
@@ -218,13 +219,12 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             msg_count += 1
             mcount += 1
             new_skip_no=str(skip_no+msg_count)
-            #await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\n\nCurrent skip no : <code>{new_skip_no}</code>")
             print(f"Total Indexed : {msg_count} - Current SKIP_NO: {new_skip_no}")
             if mcount == 5:
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\nLast indexed : <code>{ISTIME}</code>")
+                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nInxex started at : {FSTIME}\nLast indexed : <code>{ISTIME}</code>")
                     #mcount -= 100
                     mcount -= 5
                 except FloodWait as e:
