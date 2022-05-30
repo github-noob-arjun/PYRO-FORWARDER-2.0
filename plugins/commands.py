@@ -4,6 +4,8 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 import asyncio
 import sys
+plugins.database import Database as db
+
 
 START_MSG="Hi {},\nThis is a simple bot to forward all messages from one channel to other\n\n⚠️Warning\nYour account may get banned if you forward more files(from private channels). Use at Own Risk!!"
 
@@ -89,6 +91,31 @@ async def cb_handler(client, query: CallbackQuery):
                  ]]
                  )
             )
+    elif date == "adcnl":
+        await query.answer()
+        await query.message.edit("Okay,\nSend me your custom caption...")
+        user_input_msg: "types.Message" = await client.listen(query.message.chat.id)
+        if not user_input_msg.text:
+            await query.message.edit("Process Cancelled!")
+            return await user_input_msg.continue_propagation()
+        if user_input_msg.text and user_input_msg.text.startswith("/"):
+            await query.message.edit("Process Cancelled!")
+            return await user_input_msg.continue_propagation()
+        if not user_input_msg.text.startswith("-100"):
+            await query.message.edit("Process Cancelled!\nchannel id is invalid\nUse current format => `-100xxxxxxxx`")
+        user_cnl_id = user_input_msg.text
+        if user_cnl_id.startswith("-100"):
+            global new_channel_id
+            new_channel_id=int(user_cnl_id)
+        else:
+            await query.message.edit("FUCK.... Wrong Channel ID")
+            return
+        await db.set_target(query.from_user.id, user_cnl_id)
+        await query.message.edit("target channel Added Successfully!",
+                              reply_markup=types.InlineKeyboardMarkup(
+                                  [[types.InlineKeyboardButton("Show Settings",
+                                                               callback_data="settings")]]
+                              ))
     elif data == "close":
         await query.message.delete()
         try:
