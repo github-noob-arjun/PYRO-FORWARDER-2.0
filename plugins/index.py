@@ -145,9 +145,6 @@ async def cb_handler(bot: Client, query: CallbackQuery):
 
 
     await query.message.delete()
-    total_files = 0
-    duplicate = 0
-    errors = 0
     while True:
         try:
             get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
@@ -168,6 +165,9 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     )
     msg_count = 0
     mcount = 0
+    total_files = 0
+    duplicate = 0
+    errors = 0
     FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
@@ -214,7 +214,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
 
             except Exception as e:
                 print(e)
-                await bot.send_message(OWNER, f"LOG-Error-{e}")
+                errors += 1
+                #await bot.send_message(OWNER, f"LOG-Error-{e}")
                 pass
             msg_count += 1
             mcount += 1
@@ -225,12 +226,12 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
                     await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
-                    #mcount -= 100
                     mcount -= 5
                 except FloodWait as e:
                     print(f"Floodwait {e.x}")
                     pass
                 except Exception as e:
+                    errors += 1
                     #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
