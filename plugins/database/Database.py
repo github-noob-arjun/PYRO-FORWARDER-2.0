@@ -2,7 +2,7 @@ import datetime
 import motor.motor_asyncio
 import Config
 
-class db:
+class Db:
     def __init__(self, uri, database_name):
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.db = self._client[database_name]
