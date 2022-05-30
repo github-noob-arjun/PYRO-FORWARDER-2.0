@@ -83,9 +83,9 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_text(
             text="checkout and edit your settings...",
             reply_markup=InlineKeyboardMarkup( [[
-                 InlineKeyboardButton("ADD CHANNEL", callback_data="adcnl")
+                 InlineKeyboardButton("ADD CHANNEL TO FORWARD", callback_data="adcnl")
                  ],[
-                 InlineKeyboardButton("SET CAPTION", callback_data="setcap")
+                 InlineKeyboardButton("SET CUSTOM CAPTION", callback_data="setcap")
                  ]]
                  )
             )
