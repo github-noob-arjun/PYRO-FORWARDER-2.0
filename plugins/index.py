@@ -224,7 +224,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nInxex started at : {FSTIME}\nLast indexed : <code>{ISTIME}</code>")
+                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
                     #mcount -= 100
                     mcount -= 5
                 except FloodWait as e:
