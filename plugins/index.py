@@ -106,6 +106,21 @@ async def run(bot, message):
         except:
             await LIMIT.reply_text("Thats an invalid ID, It should be an integer.")
             continue
+    while True:
+        try:
+            tgid = await bot.ask(text = "Please send me TARGET channel ID\n\nIt should be something like <code>-100xxxxxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
+            tgchannel=tgid.text
+        except TimeoutError:
+            await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
+            return
+        tgchannel=tgid.text
+        if tgchannel.startswith("-100"):
+            global channel_id_
+            tgchannel_id_=int(tgchannel)
+            break
+        else:
+            await chat.reply_text("FUCK... Wrong Channel ID")
+            continue
 
     buttons=InlineKeyboardMarkup(
         [
