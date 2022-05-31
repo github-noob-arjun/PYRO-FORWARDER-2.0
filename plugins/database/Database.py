@@ -1,6 +1,6 @@
 import datetime
 import motor.motor_asyncio
-import Config
+from config import Config
 
 class Db:
     def __init__(self, uri, database_name):
