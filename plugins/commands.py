@@ -18,6 +18,8 @@ async def start(client, message):
     await message.reply_text(
         text=START_MSG.format(message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup( [[
+            InlineKeyboardButton("⚙️ SETTINGS", callback_data="settings")
+            ],[
             InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
             InlineKeyboardButton("💫 ABOUT", callback_data="abt")
             ],[
@@ -55,6 +57,8 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_text(
             text=START_MSG.format(query.from_user.first_name),
             reply_markup=InlineKeyboardMarkup( [[
+                InlineKeyboardButton("⚙️ SETTINGS", callback_data="settings")
+                ],[
                 InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
                 InlineKeyboardButton("💫 ABOUT", callback_data="abt")
                 ],[
