@@ -1,6 +1,7 @@
 import datetime
 import motor.motor_asyncio
 from config import Config
+DB_NAME = "frw_users_data"
 
 class Db:
     def __init__(self, uri, database_name):
@@ -16,3 +17,5 @@ async def set_target(self, id, target):
 async def get_target(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('target', None)
+
+db = Database(Config.DATABASE_URI, DB_NAME)
