@@ -58,9 +58,6 @@ async def forward(bot, message):
         return
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-    target = await db.get_target(message.from_user.id)
-    TO_CHANNEL = target[1]
-    m=await bot.send_message(chat_id=OWNER, text="Started Forwarding")
     global MessageCount
     mcount = random.randint(10000, 15300)
     acount = random.randint(5000, 6000)
@@ -75,7 +72,7 @@ async def forward(bot, message):
             methord = msg.methord
             caption = msg.caption
             file_type = msg.file_type
-            chat_id=TO_CHANNEL
+            chat_id=Config.TO_CHANNEL
             if methord == "bot":
                 try:
                     if file_type in ("document", "video", "audio", "photo"):
