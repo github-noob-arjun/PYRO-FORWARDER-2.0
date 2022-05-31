@@ -10,11 +10,11 @@ class Db:
         self.col = self.db.users
 
 
-async def set_target(self, id, target):
+    async def set_target(self, id, target):
         await self.col.update_one({'id': id}, {'$set': {'target': target}})
 
 
-async def get_target(self, id):
+    async def get_target(self, id):
         user = await self.col.find_one({'id': int(id)})
         return user.get('target', None)
 
