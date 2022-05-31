@@ -29,9 +29,7 @@ async def total(bot, message):
     msg = await message.reply("Counting total messages in DB...", quote=True)
     try:
         total = await Data.count_documents()
-        tarcnl = await db.get_target(message.from_user.id)
-        TR_CHANNEL = tarcnl[1]
-        await msg.edit(f'Total Messages: {total}\n\nForward To : {TR_CHANNEL}')
+        await msg.edit(f'Total Media files in DB : {total}')
     except Exception as e:
         await msg.edit(f'Error: {e}')
 
@@ -39,9 +37,10 @@ async def total(bot, message):
 @Client.on_message(filters.command('cleardb'))
 async def clrdb(bot, message):
     msg = await message.reply("Clearing files from DB...", quote=True)
+    totalf = await Data.count_documents()
     try:
         await Data.collection.drop()
-        await msg.edit(f'Cleared DB')
+        await msg.edit(f'✓ Cleared DB.. deleted {totalf} Files')
     except Exception as e:
         await msg.edit(f'Error: {e}')
                 
