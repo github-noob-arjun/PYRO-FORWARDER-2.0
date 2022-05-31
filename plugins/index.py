@@ -238,5 +238,5 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         await m.edit(f"✓ Succesfully Indexed <code>{total_files}</code> messages.\n\nIndexed from : {FROM}\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
     except Exception as e:
         print(e)
-        await m.edit(text=f"Error: {e}")
+        await m.reply_text(f"Error: {e}")
         pass
