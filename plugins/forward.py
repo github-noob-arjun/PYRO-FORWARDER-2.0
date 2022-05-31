@@ -30,7 +30,9 @@ async def total(bot, message):
     msg = await message.reply("Counting total messages in DB...", quote=True)
     try:
         total = await Data.count_documents()
-        await msg.edit(f'Total Messages: {total}')
+        tarcnl = await db.get_target(message.from_user.id)
+        TR_CHANNEL = tarcnl[1]
+        await msg.edit(f'Total Messages: {total}'\n\nForward To : {TR_CHANNEL})
     except Exception as e:
         await msg.edit(f'Error: {e}')
 
