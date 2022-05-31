@@ -18,4 +18,4 @@ class Db:
         user = await self.col.find_one({'id': int(id)})
         return user.get('target', None)
 
-db = Database(Config.DATABASE_URI, DB_NAME)
+db = Db(Config.DATABASE_URI, DB_NAME)
