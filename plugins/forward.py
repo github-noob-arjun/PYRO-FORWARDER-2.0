@@ -54,9 +54,9 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
-    TO_CHANNEL = db.get_target(message.from_user.id)
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
+    TO_CHANNEL = await db.get_target(message.from_user.id)
     m=await bot.send_message(chat_id=OWNER, text="Started Forwarding")
     global MessageCount
     mcount = random.randint(10000, 15300)
