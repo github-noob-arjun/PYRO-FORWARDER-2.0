@@ -9,7 +9,7 @@ class Db:
         self.col = self.db.users
 
 
-async def set_target(self, id, caption):
+async def set_target(self, id, user_cnl_id):
         await self.col.update_one({'id': id}, {'$set': {'target': target}})
 
 
