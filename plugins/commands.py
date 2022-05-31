@@ -18,8 +18,6 @@ async def start(client, message):
     await message.reply_text(
         text=START_MSG.format(message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("⚙️ SETTINGS", callback_data="settings")
-            ],[
             InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
             InlineKeyboardButton("💫 ABOUT", callback_data="abt")
             ],[
@@ -42,14 +40,6 @@ async def stop_button(bot, message):
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
-@Client.on_message(filters.private & filters.command('help'))
-async def help(client, message):
-    await message.reply_text(
-        #chat_id=message.chat.id,
-        text=HELP_MSG,
-        parse_mode="html")
-
-
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
     data = query.data 
@@ -57,8 +47,6 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_text(
             text=START_MSG.format(query.from_user.first_name),
             reply_markup=InlineKeyboardMarkup( [[
-                InlineKeyboardButton("⚙️ SETTINGS", callback_data="settings")
-                ],[
                 InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
                 InlineKeyboardButton("💫 ABOUT", callback_data="abt")
                 ],[
@@ -85,32 +73,6 @@ async def cb_handler(client, query: CallbackQuery):
                  ]]
                  )
             )
-    elif data == "settings":
-        await query.message.edit_text(
-            text="checkout and edit your settings...",
-            reply_markup=InlineKeyboardMarkup( [[
-                 InlineKeyboardButton("ADD CHANNEL TO FORWARD", callback_data="adcnl")
-                 ],[
-                 InlineKeyboardButton("SET CUSTOM CAPTION", callback_data="setcap")
-                 ]]
-                 )
-            )
-    elif data == "adcnl":
-        await query.answer()
-        await query.message.edit("Okay,\nSend me Where do I send the file? That channel ID\nLike this format => `-100*******`")
-        user_input_msg: "types.Message" = await client.listen(query.message.chat.id)
-        user_cnl_id = user_input_msg.text
-        if user_cnl_id.startswith("-100"):
-            global new_channel_id
-            new_channel_id=int(user_cnl_id)
-        else:
-            await query.message.edit("FUCK.... Wrong Channel ID\nUse currect format like => `-100*******`")
-            return
-        await db.set_target(query.message.from_user.id, user_cnl_id)
-        await query.message.edit("target channel Added Successfully!",
-                              reply_markup=InlineKeyboardMarkup(
-                                  [[InlineKeyboardButton("Show Settings", callback_data="settings")]]
-                              ))
     elif data == "close":
         await query.message.delete()
         try:
