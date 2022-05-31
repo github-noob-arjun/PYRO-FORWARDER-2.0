@@ -157,10 +157,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         else:
             caption=input
         break
-    datetime_ist = datetime.now(IST)
-    SSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m = await bot.send_message(
-        text="Indexing Started",
+        text="✓ Indexing Started....",
         chat_id=query.from_user.id
     )
     msg_count = 0
@@ -231,7 +229,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     print(f"Floodwait {e.x}")
                     pass
                 except Exception as e:
-                    #errors += 1
+                    errors += 1
                     #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
