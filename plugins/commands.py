@@ -99,20 +99,12 @@ async def cb_handler(client, query: CallbackQuery):
         await query.answer()
         await query.message.edit("Okay,\nSend me your custom caption...")
         user_input_msg: "types.Message" = await client.listen(query.message.chat.id)
-        if not user_input_msg.text:
-            await query.message.edit("Process Cancelled!")
-            return await user_input_msg.continue_propagation()
-        if user_input_msg.text and user_input_msg.text.startswith("/"):
-            await query.message.edit("Process Cancelled!")
-            return await user_input_msg.continue_propagation()
-        if not user_input_msg.text.startswith("-100"):
-            await query.message.edit("Process Cancelled!\nchannel id is invalid\nUse current format => `-100xxxxxxxx`")
         user_cnl_id = user_input_msg.text
         if user_cnl_id.startswith("-100"):
             global new_channel_id
             new_channel_id=int(user_cnl_id)
         else:
-            await query.message.edit("FUCK.... Wrong Channel ID")
+            await query.message.edit("FUCK.... Wrong Channel ID\nUse currect format like => `-100*******`")
             return
         await db.set_target(query.from_user.id, user_cnl_id)
         await query.message.edit("target channel Added Successfully!",
