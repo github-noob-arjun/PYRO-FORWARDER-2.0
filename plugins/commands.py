@@ -97,7 +97,7 @@ async def cb_handler(client, query: CallbackQuery):
             )
     elif data == "adcnl":
         await query.answer()
-        await query.message.edit("Okay,\nSend me your custom caption...")
+        await query.message.edit("Okay,\nSend me Where do I send the file? That channel ID\nLike this format => `-100*******`")
         user_input_msg: "types.Message" = await client.listen(query.message.chat.id)
         user_cnl_id = user_input_msg.text
         if user_cnl_id.startswith("-100"):
@@ -106,7 +106,7 @@ async def cb_handler(client, query: CallbackQuery):
         else:
             await query.message.edit("FUCK.... Wrong Channel ID\nUse currect format like => `-100*******`")
             return
-        await db.set_target(query.from_user.id, user_cnl_id)
+        await db.set_target(query.from_user.id, user_input_msg.text)
         await query.message.edit("target channel Added Successfully!",
                               reply_markup=InlineKeyboardMarkup(
                                   [[InlineKeyboardButton("Show Settings", callback_data="settings")]]
