@@ -106,7 +106,7 @@ async def cb_handler(client, query: CallbackQuery):
         else:
             await query.message.edit("FUCK.... Wrong Channel ID\nUse currect format like => `-100*******`")
             return
-        await db.set_target(query.from_user.id, user_input_msg.text)
+        await db.set_target(query.message.from_user.id, user_cnl_id)
         await query.message.edit("target channel Added Successfully!",
                               reply_markup=InlineKeyboardMarkup(
                                   [[InlineKeyboardButton("Show Settings", callback_data="settings")]]
