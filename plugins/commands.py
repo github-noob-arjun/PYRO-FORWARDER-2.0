@@ -95,7 +95,7 @@ async def cb_handler(client, query: CallbackQuery):
                  ]]
                  )
             )
-    elif date == "adcnl":
+    elif data == "adcnl":
         await query.answer()
         await query.message.edit("Okay,\nSend me your custom caption...")
         user_input_msg: "types.Message" = await client.listen(query.message.chat.id)
