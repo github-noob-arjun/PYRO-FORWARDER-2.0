@@ -56,7 +56,8 @@ async def forward(bot, message):
         return
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-    TO_CHANNEL = await db.get_target(message.from_user.id)
+    target = await db.get_target(message.from_user.id)
+    TO_CHANNEL = target[1]
     m=await bot.send_message(chat_id=OWNER, text="Started Forwarding")
     global MessageCount
     mcount = random.randint(10000, 15300)
