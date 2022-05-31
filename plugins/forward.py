@@ -54,6 +54,7 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
+    TO_CHANNEL = db.get_target(message.from_user.id)
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m=await bot.send_message(chat_id=OWNER, text="Started Forwarding")
@@ -71,7 +72,7 @@ async def forward(bot, message):
             methord = msg.methord
             caption = msg.caption
             file_type = msg.file_type
-            chat_id=Config.TO_CHANNEL
+            chat_id=TO_CHANNEL
             if methord == "bot":
                 try:
                     if file_type in ("document", "video", "audio", "photo"):
