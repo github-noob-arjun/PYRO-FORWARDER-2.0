@@ -116,9 +116,8 @@ async def cb_handler(client, query: CallbackQuery):
             return
         await db.set_target(query.from_user.id, user_cnl_id)
         await query.message.edit("target channel Added Successfully!",
-                              reply_markup=types.InlineKeyboardMarkup(
-                                  [[types.InlineKeyboardButton("Show Settings",
-                                                               callback_data="settings")]]
+                              reply_markup=InlineKeyboardMarkup(
+                                  [[InlineKeyboardButton("Show Settings", callback_data="settings")]]
                               ))
     elif data == "close":
         await query.message.delete()
