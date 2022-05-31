@@ -4,7 +4,7 @@ from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 import asyncio
 import sys
-plugins.database import Database as db
+from plugins.database import Database as db
 
 
 START_MSG="Hi {},\nThis is a simple bot to forward all messages from one channel to other\n\n⚠️Warning\nYour account may get banned if you forward more files(from private channels). Use at Own Risk!!"
