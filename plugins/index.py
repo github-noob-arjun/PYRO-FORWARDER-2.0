@@ -231,7 +231,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     print(f"Floodwait {e.x}")
                     pass
                 except Exception as e:
-                    errors += 1
+                    #errors += 1
                     #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
