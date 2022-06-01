@@ -1,1 +1,1 @@
-worker: bash run.sh
+python3 -m main
