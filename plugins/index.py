@@ -157,6 +157,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         else:
             caption=input
         break
+    sdatetime_ist = datetime.now(IST)
+    SSTIME = sdatetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m = await bot.send_message(
         text="✓ Indexing Started....",
         chat_id=query.from_user.id
