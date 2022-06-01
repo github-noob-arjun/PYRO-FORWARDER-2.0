@@ -1,5 +1,5 @@
 <h1 align="center">
-  <b> 𝗣𝘆𝗿𝗼 𝗙𝗼𝗿𝘄𝗮𝗿𝗱𝗲𝗿 𝗕𝗼𝘁</b>
+  <b>𝗣𝘆𝗿𝗼 𝗙𝗼𝗿𝘄𝗮𝗿𝗱 𝗕𝗼𝘁</b>
 </h1>
 
 * Bot to forward messages from one channel to other without admin permission in source channel.
