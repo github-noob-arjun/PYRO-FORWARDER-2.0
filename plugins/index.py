@@ -18,6 +18,9 @@ skip_no=""
 caption=""
 channel_type=""
 channel_id_=""
+total_files = 0
+duplicate = 0
+errors = 0
 IST = pytz.timezone('Asia/Kolkata')
 OWNER=int(Config.OWNER_ID)
 
@@ -165,9 +168,6 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     )
     msg_count = 0
     mcount = 0
-    total_files = 0
-    duplicate = 0
-    errors = 0
     FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
