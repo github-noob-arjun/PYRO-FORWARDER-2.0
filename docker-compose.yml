@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  pyro:
+    build: .
+    environment:
+      API_HASH: $API_HASH
+      API_HASH: $API_HASH
+      BOT_TOKEN: $BOT_TOKEN
+      BOT_USERNAME: $BOT_USERNAME
+      TO_CHANNEL: $TO_CHANNEL
+      DATABASE_URI: $DATABASE_URI
+      DATABASE_NAME: $DATABASE_NAME
+      COLLECTION_NAME: $COLLECTION_NAME
+      OWNER_ID: $OWNER_ID
+      SESSION: $SESSION
