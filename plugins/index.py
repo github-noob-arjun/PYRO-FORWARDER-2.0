@@ -110,15 +110,15 @@ async def run(bot, message):
     buttons=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("All Media", callback_data="all")
+                InlineKeyboardButton("📚 ALL MEDIA ", callback_data="all")
             ],
             [
-                InlineKeyboardButton("Document", callback_data="docs"),
-                InlineKeyboardButton("Photos", callback_data="photos")
+                InlineKeyboardButton("🗃️ FILE", callback_data="docs"),
+                InlineKeyboardButton("🌌 PHOTO", callback_data="photos")
             ],
             [
-                InlineKeyboardButton("Videos", callback_data="videos"),
-                InlineKeyboardButton("Audios", callback_data="audio")
+                InlineKeyboardButton("📺 VIDEO", callback_data="videos"),
+                InlineKeyboardButton("🎵 AUDIO", callback_data="audio")
             ]
         ]
         )
@@ -232,7 +232,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     #await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
-        await m.edit(f"✓ Succesfully Indexed <code>{total_files}</code> messages.\n\nIndexed from : {FROM}\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
+        await m.edit(f"💫 Succesfully Indexed <code>{total_files}</code> messages.\n\nIndexed from : {FROM}\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
     except Exception as e:
         print(e)
         await m.reply_text(f"Error: {e}")
