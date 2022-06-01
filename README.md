@@ -27,7 +27,7 @@
 ### SPECIAL THANKS TO SUBIN 😘
 subin uyir🔥
 
-* [💥 SUBIN 💥](https://github.com/subinps) for his [Forward_2.0](https://github.com/subinps/Forward_2.0)
+* [SUBIN](https://github.com/subinps) for his [Forward_2.0](https://github.com/subinps/Forward_2.0)
 
 
 ### Credits ❣️
