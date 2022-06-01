@@ -54,6 +54,7 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
+    m=await bot.send_message(chat_id=OWNER, text="✓ Started Forwarding")
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     global MessageCount
