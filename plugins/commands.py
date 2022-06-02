@@ -16,8 +16,8 @@ async def start(client, message):
     await message.reply_text(
         text=START_MSG.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
-            InlineKeyboardButton("💫 ABOUT", callback_data="abt")
+            InlineKeyboardButton("ℹ️ HELP", callback_data="sahayam"),
+            InlineKeyboardButton("💫 ABOUT", callback_data="about")
             ],[
             InlineKeyboardButton("🍂 SUPPORT 🍂", url="https://t.me/PYRO_BOTZ_CHAT")
             ]]
@@ -50,7 +50,7 @@ async def cb_start(bot, q):
             ]]
             )
         )
-@Client.on_callback_query(filters.regex(r'^help$'))
+@Client.on_callback_query(filters.regex(r'^sahayam$'))
 async def cb_help(bot, q):
     await q.edit_text(
         text=HELP_MSG,
@@ -61,7 +61,7 @@ async def cb_help(bot, q):
              )
         )
 
-@Client.on_callback_query(filters.regex(r'^abt$'))
+@Client.on_callback_query(filters.regex(r'^about$'))
 async def cb_abt(bot, q):
     await q.edit_text(
         text=ABOUT_TXT,
