@@ -37,6 +37,7 @@ async def stop_button(bot, message):
 async def cb_start(bot, q):
     await q.message.edit_text(
         text=pyro.START_MSG.format(q.message.from_user.first_name),
+        disable_web_page_preview = True,
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton("ℹ️ HELP", callback_data="sahayam"),
             InlineKeyboardButton("💫 ABOUT", callback_data="about")
@@ -49,6 +50,7 @@ async def cb_start(bot, q):
 async def cb_help(bot, q):
     await q.message.edit_text(
         text=pyro.HELP_MSG,
+        disable_web_page_preview = True,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
              InlineKeyboardButton("↩️ BACK", callback_data="start")
@@ -60,6 +62,7 @@ async def cb_help(bot, q):
 async def cb_abt(bot, q):
     await q.message.edit_text(
         text=pyro.ABOUT_TXT,
+        disable_web_page_preview = True,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
              InlineKeyboardButton("↩️ BACK", callback_data="start")
