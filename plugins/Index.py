@@ -72,6 +72,7 @@ async def run(bot, message):
 
             
     else:
+        await chat.delete()
         #global channel_type
         channel_type="public"
         channel_id = re.search(r"t.me.(.*)", channel)
@@ -122,6 +123,7 @@ async def run(bot, message):
             ]
         ]
         )
+    await LIMIT.delete()
     await bot.send_message(
         chat_id=message.from_user.id,
         text=f"Ok,\nNow choose what type of messages you want to forward.",
