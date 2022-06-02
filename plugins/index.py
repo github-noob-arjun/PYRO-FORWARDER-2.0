@@ -154,17 +154,17 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             return
     await query.message.delete()
     #while True:
-        try:
-            get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
-        except TimeoutError:
-            await bot.send_message(query.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
-            return
-        input=get_caption.text
-        if input == "0":
-            caption=None
-        else:
-            caption=input
-        break
+    try:
+        get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
+    except TimeoutError:
+        await bot.send_message(query.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
+        return
+    input=get_caption.text
+    if input == "0":
+        caption=None
+    else:
+        caption=input
+    break
     
     sdatetime_ist = datetime.now(IST)
     SSTIME = sdatetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
