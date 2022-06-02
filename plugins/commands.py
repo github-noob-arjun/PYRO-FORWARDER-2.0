@@ -14,7 +14,7 @@ ABOUT_TXT=""" #sOoN"""
 @Client.on_message(filters.private & filters.command('start'))
 async def start(client, message):
     await message.reply_text(
-        text=START_MSG.format(message.from_user.first_name),
+        text=START_MSG.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
             InlineKeyboardButton("💫 ABOUT", callback_data="abt")
