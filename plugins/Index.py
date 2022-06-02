@@ -157,11 +157,16 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         else:
             caption=input
         break
-
+    
+    sdatetime_ist = datetime.now(IST)
+    SSTIME = sdatetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m = await bot.send_message(
-        text="Indexing Started",
+        text="**✓ Indexing Started**",
         chat_id=query.from_user.id
     )
+    total_files = 0
+    duplicate = 0
+    errors = 0
     msg_count = 0
     mcount = 0
     FROM=channel_id_
@@ -200,21 +205,28 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             
             message_id=msg.message_id
             try:
-                await save_data(id, channel, message_id, methord, msg_caption, file_type)
+                aynav, vnay = await save_data(id, channel, message_id, methord, msg_caption, file_type)
+                if aynav:
+                    total_files += 1
+                elif vnay == 0:
+                    duplicate += 1
+                elif vnay == 2:
+                    errors += 1
             except Exception as e:
                 print(e)
+                errors += 1
                # await bot.send_message(OWNER, f"LOG-Error-{e}")
                 pass
             msg_count += 1
             mcount += 1
             new_skip_no=str(skip_no+msg_count)
             print(f"Total Indexed : {msg_count} - Current SKIP_NO: {new_skip_no}")
-            if mcount == 100:
+            if mcount == 5:
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit(text=f"Total Indexed : <code>{msg_count}</code>\nCurrent skip_no:<code>{new_skip_no}</code>\nLast edited at {ISTIME}")
-                    mcount -= 100
+                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nIndexing From : {FROM}\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
+                    mcount -= 5
                 except FloodWait as e:
                     print(f"Floodwait {e.x}")
                     pass
