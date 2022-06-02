@@ -41,7 +41,7 @@ async def stop_button(bot, message):
 @Client.on_callback_query(filters.regex(r'^start$'))
 async def cb_start(bot, q):
     await q.message.edit_text(
-        text=START_MSG.format(q.from_user.first_name),
+        text=START_MSG.format(q.message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
             InlineKeyboardButton("💫 ABOUT", callback_data="abt")
