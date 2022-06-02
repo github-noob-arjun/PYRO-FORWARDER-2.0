@@ -52,7 +52,7 @@ async def cb_start(bot, q):
         )
 @Client.on_callback_query(filters.regex(r'^sahayam$'))
 async def cb_help(bot, q):
-    await q.edit_text(
+    await q.message.edit_text(
         text=HELP_MSG,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
@@ -63,7 +63,7 @@ async def cb_help(bot, q):
 
 @Client.on_callback_query(filters.regex(r'^about$'))
 async def cb_abt(bot, q):
-    await q.edit_text(
+    await q.message.edit_text(
         text=ABOUT_TXT,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
