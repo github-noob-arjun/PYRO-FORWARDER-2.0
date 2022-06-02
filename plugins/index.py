@@ -38,8 +38,10 @@ async def run(bot, message):
             return
         channel=id.text
         if channel.startswith("-100"):
-            global channel_id_
-            channel_id_=int(channel)
+            #global channel_id_
+            #channel_id_=int(channel)
+            global fromchannel
+            fromchannel = channel.message.strip()
             break
         else:
             await chat.reply_text("Wrong Channel ID")
@@ -142,7 +144,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     errors = 0
     msg_count = 0
     mcount = 0
-    FROM=channel_id_
+    FROM = int(fromchannel)
+    #FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
             if channel_type == "public":
