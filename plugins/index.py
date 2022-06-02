@@ -31,56 +31,19 @@ async def run(bot, message):
         return
     while True:
         try:
-            chat = await bot.ask(text = "To Index a channel you may send me the channel invite link, so that I can join channel and index the files.\n\nIt should be something like <code>https://t.me/xxxxxx</code> or <code>https://t.me/joinchat/xxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
-            channel=chat.text
-            await chat.delete()
+            id = await bot.ask(text = "I need Channel id, Please send me channel ID\n\nIt should be something like <code>-100xxxxxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
+            channel=id.text
         except TimeoutError:
             await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
             return
-
-        pattern=".*https://t.me/.*"
-        result = re.match(pattern, channel, flags=re.IGNORECASE)
-        if result:
-            print(channel)
+        channel=id.text
+        if channel.startswith("-100"):
+            global channel_id_
+            channel_id_=int(channel)
             break
         else:
-            await chat.reply_text("Wrong URL")
+            await chat.reply_text("Wrong Channel ID")
             continue
-
-    if 'joinchat' in channel:
-        global channel_type
-        channel_type="private"
-        try:
-            await bot.USER.join_chat(channel)
-        except UserAlreadyParticipant:
-            pass
-        except InviteHashExpired:
-            await chat.reply_text("Wrong URL or User Banned in channel.")
-            return
-        while True:
-            try:
-                id = await bot.ask(text = "Since this is a Private channel I need Channel id, Please send me channel ID\n\nIt should be something like <code>-100xxxxxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
-                channel=id.text
-            except TimeoutError:
-                await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
-                return
-            channel=id.text
-            if channel.startswith("-100"):
-                global channel_id_
-                channel_id_=int(channel)
-                break
-            else:
-                await chat.reply_text("Wrong Channel ID")
-                continue
-
-            
-    else:
-        #global channel_type
-        channel_type="public"
-        channel_id = re.search(r"t.me.(.*)", channel)
-        #global channel_id_
-        channel_id_=channel_id.group(1)
-
     while True:
         try:
             SKIP = await bot.ask(text = "Send me from where you want to start forwarding\nSend 0 for from beginning.", chat_id = message.from_user.id, filters=filters.text, timeout=30)
