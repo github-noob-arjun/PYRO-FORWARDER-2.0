@@ -29,8 +29,11 @@ async def run(bot, message):
         return
     while True:
         try:
-            chat = await bot.ask(text = "To Index a channel you may send me the channel invite link, so that I can join channel and index the files.\n\nIt should be something like <code>https://t.me/xxxxxx</code> or <code>https://t.me/joinchat/xxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
-            channel=chat.text
+           # chat = await bot.ask(text = "To Index a channel you may send me the channel invite link, so that I can join channel and index the files.\n\nIt should be something like <code>https://t.me/xxxxxx</code> or <code>https://t.me/joinchat/xxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
+           # channel=chat.text
+            chat = await bot.send_message(text = "To Index a channel you may send me the channel invite link, so that I can join channel and index the files.\n\nIt should be something like <code>https://t.me/xxxxxx</code> or <code>https://t.me/joinchat/xxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
+            channel=chat.message.reply_to_message.text
+            await chat.delete()
         except TimeoutError:
             await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
             return
@@ -72,7 +75,6 @@ async def run(bot, message):
 
             
     else:
-        await chat.delete()
         #global channel_type
         channel_type="public"
         channel_id = re.search(r"t.me.(.*)", channel)
