@@ -19,6 +19,8 @@ caption=""
 channel_type=""
 channel_id_=""
 IST = pytz.timezone('Asia/Kolkata')
+BOT_STATUS = "0"
+status = set(int(x) for x in (BOT_STATUS).split())
 OWNER=int(Config.OWNER_ID)
 
 
@@ -111,15 +113,15 @@ async def run(bot, message):
     buttons=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("📚 ALL MEDIA", callback_data="ellam")
+                InlineKeyboardButton("📚 ALL MEDIA", callback_data="all")
             ],
             [
-                InlineKeyboardButton("🗃️ DOCUMENT", callback_data="files"),
-                InlineKeyboardButton("🖼️ PHOTOS", callback_data="pic")
+                InlineKeyboardButton("🗃️ DOCUMENT", callback_data="docs"),
+                InlineKeyboardButton("🖼️ PHOTOS", callback_data="photos")
             ],
             [
-                InlineKeyboardButton("🎦 VIDEOS", callback_data="vid"),
-                InlineKeyboardButton("🎵 AUDIOS", callback_data="song")
+                InlineKeyboardButton("🎦 VIDEOS", callback_data="videos"),
+                InlineKeyboardButton("🎵 AUDIOS", callback_data="audio")
             ]
         ]
         )
@@ -132,21 +134,26 @@ async def run(bot, message):
 @Client.on_callback_query()
 async def cb_handler(bot: Client, query: CallbackQuery):
     filter=""
-    if query.data == "files":
+    if query.data == "docs":
         filter="document"
-    elif query.data == "ellam":
+    elif query.data == "all":
         filter="empty"
-    elif query.data == "pic":
+    elif query.data == "photos":
         filter="photo"
-    elif query.data == "vid":
+    elif query.data == "videos":
         filter="video"
-    elif query.data == "song":
+    elif query.data == "audio":
         filter="audio"
     caption=None
-
-
+    if filter:
+        if "1" in status:
+            await event.respond("A task is already running.")
+            return
+        if "2" in status:
+            await event.respond("Sleeping the engine for avoiding ban.")
+            return
     await query.message.delete()
-    while True:
+    #while True:
         try:
             get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
         except TimeoutError:
