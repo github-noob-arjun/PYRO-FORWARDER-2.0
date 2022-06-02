@@ -147,43 +147,6 @@ async def cb_handler(bot: Client, query: CallbackQuery):
         filter="photo"
     elif query.data == "videos":
         filter="video"
-    elif query.data == "start":
-        await query.message.edit_text(
-            text=START_MSG.format(query.from_user.first_name),
-            reply_markup=InlineKeyboardMarkup( [[
-                InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
-                InlineKeyboardButton("💫 ABOUT", callback_data="abt")
-                ],[
-                InlineKeyboardButton("🍂 SUPPORT 🍂", url="https://t.me/PYRO_BOTZ_CHAT")
-                ]]
-                )
-            )
-    elif query.data == "help":
-        await query.message.edit_text(
-            text=HELP_MSG,
-            reply_markup=InlineKeyboardMarkup( [[
-                 InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
-                 InlineKeyboardButton("↩️ BACK", callback_data="start")
-                 ]]
-                 )
-            )
-
-    elif query.data == "abt":
-        await query.message.edit_text(
-            text=ABOUT_TXT,
-            reply_markup=InlineKeyboardMarkup( [[
-                 InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
-                 InlineKeyboardButton("↩️ BACK", callback_data="start")
-                 ]]
-                 )
-            )
-    elif query.data == "close":
-        await query.message.delete()
-        try:
-            await query.message.reply_to_message.delete()
-        except:
-            pass
-
     elif query.data == "audio":
         filter="audio"
     caption=None
