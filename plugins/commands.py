@@ -39,9 +39,9 @@ async def stop_button(bot, message):
 
 
 @Client.on_callback_query(filters.regex(r'^start$'))
-async def cb_start(bot, query):
-    await query.edit_text(
-        text=START_MSG.format(query.from_user.first_name),
+async def cb_start(bot, q):
+    await q.edit_text(
+        text=START_MSG.format(q.from_user.first_name),
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
             InlineKeyboardButton("💫 ABOUT", callback_data="abt")
@@ -51,8 +51,8 @@ async def cb_start(bot, query):
             )
         )
 @Client.on_callback_query(filters.regex(r'^help$'))
-async def cb_help(bot, query):
-    await query.edit_text(
+async def cb_help(bot, q):
+    await q.edit_text(
         text=HELP_MSG,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
@@ -62,8 +62,8 @@ async def cb_help(bot, query):
         )
 
 @Client.on_callback_query(filters.regex(r'^abt$'))
-async def cb_abt(bot, query):
-    await query.edit_text(
+async def cb_abt(bot, q):
+    await q.edit_text(
         text=ABOUT_TXT,
         reply_markup=InlineKeyboardMarkup( [[
              InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
@@ -72,9 +72,9 @@ async def cb_abt(bot, query):
              )
         )
 @Client.on_callback_query(filters.regex(r'^close$'))
-async def cb_close(bot, query):
-    await query.message.delete()
+async def cb_close(bot, q):
+    await q.message.delete()
     try:
-        await query.message.reply_to_message.delete()
+        await q.message.reply_to_message.delete()
     except:
         pass
