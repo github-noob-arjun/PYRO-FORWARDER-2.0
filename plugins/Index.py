@@ -161,7 +161,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     sdatetime_ist = datetime.now(IST)
     SSTIME = sdatetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
     m = await bot.send_message(
-        text="**✓ Indexing Started**",
+        text="<b>✓ Indexing Started</b>",
         chat_id=query.from_user.id
     )
     total_files = 0
@@ -225,7 +225,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                 try:
                     datetime_ist = datetime.now(IST)
                     ISTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
-                    await m.edit_text(f"Total messages fetched : {msg_count}\nTotal Indexed : <code>{total_files}</code>\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>\n\nIndexing From : {FROM}\n\nInxex started at : {SSTIME}\nLast indexed : <code>{ISTIME}</code>")
+                    await m.edit_text(f"<b><u>INDEXING RESULTS</u>\n\nTotal messages fetched : {msg_count}\nTotal Indexed : {total_files}\nDuplicate files : {duplicate}\nErrors : {errors}\nCurrent skip no : {new_skip_no}\n\nIndexing From : {FROM}\n\nIndex started at : {SSTIME}\nLast indexed : {ISTIME}</b>")
                     mcount -= 5
                 except FloodWait as e:
                     print(f"Floodwait {e.x}")
@@ -234,7 +234,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                    # await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
-        await m.edit(f"💫 Succesfully Indexed <code>{total_files}</code> messages.\n\nIndexed from : {FROM}\n\nDuplicate files : {duplicate}\nErrors : {errors}\n\nCurrent skip no : <code>{new_skip_no}</code>")
+        await m.edit(f"<b><u>INDEXED RESULTS</u>\n\n💫 Succesfully Indexed : {total_files} Files.\nIndexed from : {FROM}\nDuplicate files : {duplicate}\nErrors : {errors}\nCurrent skip no : {new_skip_no}\n\nIndex started at : {SSTIME}\nIndexing Ended : {ISTIME}</b>")
     except Exception as e:
         print(e)
         await m.reply_text(f"Error: {e}")
