@@ -38,8 +38,8 @@ async def cb_start(bot, q):
     await q.message.edit_text(
         text=pyro.START_MSG.format(q.message.from_user.first_name),
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
-            InlineKeyboardButton("💫 ABOUT", callback_data="abt")
+            InlineKeyboardButton("ℹ️ HELP", callback_data="sahayam"),
+            InlineKeyboardButton("💫 ABOUT", callback_data="about")
             ],[
             InlineKeyboardButton("🍂 SUPPORT 🍂", url="https://t.me/PYRO_BOTZ_CHAT")
             ]]
