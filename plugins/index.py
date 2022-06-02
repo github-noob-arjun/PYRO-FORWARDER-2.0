@@ -111,15 +111,15 @@ async def run(bot, message):
     buttons=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("📚 ALL MEDIA", callback_data="all")
+                InlineKeyboardButton("📚 ALL MEDIA", callback_data="ellam")
             ],
             [
-                InlineKeyboardButton("🗃️ DOCUMENT", callback_data="docs"),
-                InlineKeyboardButton("🖼️ PHOTOS", callback_data="photos")
+                InlineKeyboardButton("🗃️ DOCUMENT", callback_data="files"),
+                InlineKeyboardButton("🖼️ PHOTOS", callback_data="pic")
             ],
             [
-                InlineKeyboardButton("🎦 VIDEOS", callback_data="videos"),
-                InlineKeyboardButton("🎵 AUDIOS", callback_data="audio")
+                InlineKeyboardButton("🎦 VIDEOS", callback_data="vid"),
+                InlineKeyboardButton("🎵 AUDIOS", callback_data="song")
             ]
         ]
         )
@@ -132,15 +132,15 @@ async def run(bot, message):
 @Client.on_callback_query()
 async def cb_handler(bot: Client, query: CallbackQuery):
     filter=""
-    if query.data == "docs":
+    if query.data == "files":
         filter="document"
-    elif query.data == "all":
+    elif query.data == "ellam":
         filter="empty"
-    elif query.data == "photos":
+    elif query.data == "pic":
         filter="photo"
-    elif query.data == "videos":
+    elif query.data == "vid":
         filter="video"
-    elif query.data == "audio":
+    elif query.data == "song":
         filter="audio"
     caption=None
 
