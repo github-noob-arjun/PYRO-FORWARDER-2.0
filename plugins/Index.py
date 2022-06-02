@@ -129,7 +129,6 @@ async def run(bot, message):
             ]
         ]
         )
-    await LIMIT.delete()
     await bot.send_message(
         chat_id=message.from_user.id,
         text=f"Ok,\nNow choose what type of messages you want to forward.",
