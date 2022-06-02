@@ -25,7 +25,7 @@ OWNER=int(Config.OWNER_ID)
 @Client.on_message(filters.private & filters.command(["index"]))
 async def run(bot, message):
     if message.from_user.id != OWNER:
-        await message.reply_text("Who the hell are you!!")
+        await message.reply_text("🤫 wHo thE hElL aRe YoU!!")
         return
     while True:
         try:
@@ -110,15 +110,15 @@ async def run(bot, message):
     buttons=InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("All Messages", callback_data="all")
+                InlineKeyboardButton("📚 ALL MEDIA", callback_data="all")
             ],
             [
-                InlineKeyboardButton("Document", callback_data="docs"),
-                InlineKeyboardButton("Photos", callback_data="photos")
+                InlineKeyboardButton("🗃️ DOCUMENT", callback_data="docs"),
+                InlineKeyboardButton("🖼️ PHOTOS", callback_data="photos")
             ],
             [
-                InlineKeyboardButton("Videos", callback_data="videos"),
-                InlineKeyboardButton("Audios", callback_data="audio")
+                InlineKeyboardButton("🎦 VIDEOS", callback_data="videos"),
+                InlineKeyboardButton("🎵 AUDIOS", callback_data="audio")
             ]
         ]
         )
@@ -203,7 +203,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                 await save_data(id, channel, message_id, methord, msg_caption, file_type)
             except Exception as e:
                 print(e)
-                await bot.send_message(OWNER, f"LOG-Error-{e}")
+               # await bot.send_message(OWNER, f"LOG-Error-{e}")
                 pass
             msg_count += 1
             mcount += 1
@@ -219,7 +219,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     print(f"Floodwait {e.x}")
                     pass
                 except Exception as e:
-                    await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
+                   # await bot.send_message(chat_id=OWNER, text=f"LOG-Error: {e}")
                     print(e)
                     pass
         await m.edit(f"Succesfully Indexed <code>{msg_count}</code> messages.")
