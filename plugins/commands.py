@@ -36,3 +36,45 @@ async def stop_button(bot, message):
     await asyncio.sleep(1)
     await msg.edit("All Processes Stopped and Restarted")
     os.execl(sys.executable, sys.executable, *sys.argv)
+
+
+@Client.on_callback_query(filters.regex(r'^start$'))
+async def cb_start(bot, query):
+    await query.edit_text(
+        text=START_MSG.format(query.from_user.first_name),
+        reply_markup=InlineKeyboardMarkup( [[
+            InlineKeyboardButton("ℹ️ HELP", callback_data="help"),
+            InlineKeyboardButton("💫 ABOUT", callback_data="abt")
+            ],[
+            InlineKeyboardButton("🍂 SUPPORT 🍂", url="https://t.me/PYRO_BOTZ_CHAT")
+            ]]
+            )
+        )
+@Client.on_callback_query(filters.regex(r'^help$'))
+async def cb_help(bot, query):
+    await query.edit_text(
+        text=HELP_MSG,
+        reply_markup=InlineKeyboardMarkup( [[
+             InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
+             InlineKeyboardButton("↩️ BACK", callback_data="start")
+             ]]
+             )
+        )
+
+@Client.on_callback_query(filters.regex(r'^abt$'))
+async def cb_abt(bot, query):
+    await query.edit_text(
+        text=ABOUT_TXT,
+        reply_markup=InlineKeyboardMarkup( [[
+             InlineKeyboardButton("🔐 CLOSE", callback_data="close"),
+             InlineKeyboardButton("↩️ BACK", callback_data="start")
+             ]]
+             )
+        )
+@Client.on_callback_query(filters.regex(r'^close$'))
+async def cb_close(bot, query):
+    await query.message.delete()
+    try:
+        await query.message.reply_to_message.delete()
+    except:
+        pass
