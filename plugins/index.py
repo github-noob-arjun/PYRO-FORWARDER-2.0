@@ -160,7 +160,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     #        caption=input
     #    break
 
-    elif filter:
+    if filter:
         if "1" in status:
             await event.respond("A task is already running.")
             return
