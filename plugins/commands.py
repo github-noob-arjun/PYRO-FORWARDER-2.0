@@ -1,7 +1,7 @@
 import os
 from config import Config
 from pyrogram import Client, filters
-from help.txt import pyro
+from Help.txt import pyro
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 import asyncio
 import sys
