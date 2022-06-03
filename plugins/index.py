@@ -56,7 +56,7 @@ async def run(bot, message):
                 global fromchannel
                 fromchannel = channel.strip()
                 break
-B           except Exception as e:
+            except Exception as e:
                 print(e)
                 await message.reply_text(f"Error: {e}")
                 pass
