@@ -165,9 +165,14 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     #FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
-            methord="bot"
-            channel=str(FROM)
-            msg=await bot.USER.get_messages(FROM, MSG.message_id)
+            if channel_type == "public":
+                methord="bot"
+                channel=FROM
+                msg=await bot.get_messages(FROM, MSG.message_id)
+            elif channel_type == "private":
+                methord="user"
+                channel=str(FROM)
+                msg=await bot.USER.get_messages(FROM, MSG.message_id)
             msg_caption=""
             if caption is not None:
                 msg_caption=caption
