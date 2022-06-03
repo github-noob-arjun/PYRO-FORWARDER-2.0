@@ -55,7 +55,7 @@ async def run(bot, message):
             channel_type="private"
             try:
                 global fromchannel
-                fromchannel = channel.strip()
+                fromchannel=int(channel)
                 break
             except Exception as e:
                 print(e)
