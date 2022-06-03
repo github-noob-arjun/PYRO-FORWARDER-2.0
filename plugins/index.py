@@ -36,15 +36,32 @@ async def run(bot, message):
         except TimeoutError:
             await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
             return
+
         channel=id.text
-        if channel.startswith("-100"):
-            #global channel_id_
-            #channel_id_=int(channel)
-            global fromchannel
-            fromchannel = channel.strip()
-            break
+        if channel.startswith("https://t.me/"):
+            pattern=".*https://t.me/.*"
+            result = re.match(pattern, channel, flags=re.IGNORECASE)
+            channel_type="public"
+            if result:
+                print(channel)
+                break
+            else:
+                await chat.reply_text("Wrong URL")
+                continue
+
+        #channel=id.text
+        elif channel.startswith("-100"):
+            global channel_type
+            channel_type="private"
+            try:
+                global fromchannel
+                fromchannel = channel.strip()
+                break
+            else:
+                await chat.reply_text("Wrong Channel ID")
+                continue
         else:
-            await chat.reply_text("Wrong Channel ID")
+            await chat.reply_text("Wrong Channel ID or link")
             continue
     while True:
         try:
