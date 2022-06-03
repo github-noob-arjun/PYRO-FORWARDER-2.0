@@ -41,7 +41,7 @@ async def run(bot, message):
             #global channel_id_
             #channel_id_=int(channel)
             global fromchannel
-            fromchannel = channel.message.strip()
+            fromchannel = channel.strip()
             break
         else:
             await chat.reply_text("Wrong Channel ID")
