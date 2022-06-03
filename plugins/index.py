@@ -56,6 +56,10 @@ async def run(bot, message):
                 global fromchannel
                 fromchannel = channel.strip()
                 break
+B           except Exception as e:
+                print(e)
+                await message.reply_text(f"Error: {e}")
+                pass
                 continue
         else:
             await chat.reply_text("Wrong Channel ID or link")
