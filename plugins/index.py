@@ -49,17 +49,16 @@ async def run(bot, message):
                 await chat.reply_text("Wrong URL")
                 continue
 
-        elif channel.startswith("-100"):
+        if channel.startswith("-100"):
             global channel_type
             channel_type="private"
-            while True:
-                try:
-                    global fromchannel
-                    fromchannel = channel.strip()
-                    break
-                else:
-                    await chat.reply_text("Wrong Channel ID")
-                    continue
+            try:
+                global fromchannel
+                fromchannel = channel.strip()
+                break
+            else:
+                await chat.reply_text("Wrong Channel ID")
+                continue
         else:
             await chat.reply_text("Wrong Channel ID or link")
             continue
