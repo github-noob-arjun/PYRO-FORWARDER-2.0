@@ -39,8 +39,8 @@ async def run(bot, message):
 
         channel=id.text
         if channel.startswith("https://t.me/"):
-            pattern=".*https://t.me/.*"
-            result = re.match(pattern, channel, flags=re.IGNORECASE)
+            #pattern=".*https://t.me/.*"
+            #result = re.match(pattern, channel, flags=re.IGNORECASE)
             channel_type="public"
             channel_id = re.search(r"t.me.(.*)", channel)
             fromchannel = channel_id.group(1)
@@ -51,6 +51,7 @@ async def run(bot, message):
                 await chat.reply_text("Wrong URL")
                 continue
 
+        channel=id.text
         elif channel.startswith("-100"):
             channel_type="private"
             try:
