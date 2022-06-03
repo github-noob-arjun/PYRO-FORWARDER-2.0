@@ -50,7 +50,6 @@ async def run(bot, message):
                 continue
 
         elif channel.startswith("-100"):
-            global channel_type
             channel_type="private"
             try:
                 global fromchannel
