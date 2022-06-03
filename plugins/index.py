@@ -42,6 +42,8 @@ async def run(bot, message):
             pattern=".*https://t.me/.*"
             result = re.match(pattern, channel, flags=re.IGNORECASE)
             channel_type="public"
+            channel_id = re.search(r"t.me.(.*)", channel)
+            fromchannel=channel_id.group(1)
             if result:
                 print(channel)
                 break
