@@ -54,7 +54,7 @@ async def run(bot, message):
         elif channel.startswith("-100"):
             channel_type="private"
             try:
-                global fromchannel
+                #global fromchannel
                 fromchannel=int(channel)
                 break
             except Exception as e:
