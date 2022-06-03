@@ -43,7 +43,7 @@ async def run(bot, message):
             result = re.match(pattern, channel, flags=re.IGNORECASE)
             channel_type="public"
             channel_id = re.search(r"t.me.(.*)", channel)
-            fromchannel=channel_id.group(1)
+            fromchannel = channel_id.group(1)
             if result:
                 print(channel)
                 break
@@ -55,7 +55,7 @@ async def run(bot, message):
             channel_type="private"
             try:
                 #global fromchannel
-                fromchannel=int(channel)
+                fromchannel = int(channel)
                 break
             except Exception as e:
                 print(e)
