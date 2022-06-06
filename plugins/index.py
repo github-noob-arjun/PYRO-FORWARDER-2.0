@@ -171,8 +171,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     errors = 0
     msg_count = 0
     mcount = 0
-    FROM=fromchannel
-    #FROM=channel_id_
+    FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
             if channel_type == "public":
