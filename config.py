@@ -13,7 +13,7 @@ class Config:
     SESSION = os.environ.get("SESSION", "Forward_Session")
     TO_CHANNEL = int(os.environ.get("TO_CHANNEL", ""))
     BOT_USERNAME= os.environ.get("BOT_USERNAME", None)
-
+    TIME_ZONE = os.environ.get("TIME_ZONE", Asia/Kolkata)
 
 def LOGGER(name: str) -> logging.Logger:
     return logging.getLogger(name)
