@@ -56,18 +56,6 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
-    while True:
-        try:
-            get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
-        except TimeoutError:
-            await bot.send_message(query.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
-            return
-        input=get_caption.text
-        if input == "0":
-            caption=None
-        else:
-            caption=input
-        break
     m=await bot.send_message(chat_id=OWNER, text="✓ Started Forwarding")
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
