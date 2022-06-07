@@ -38,9 +38,12 @@ async def run(bot, message):
             return
         channel=id.text
         if channel.startswith("-100"):
-            global channel_id_
-            channel_id_=int(channel)
-            break
+            try:
+                global channel_id_
+                channel_id_=int(channel)
+            except:
+                await bot.send_message(message.from_user.id, "Fuck 😠... Chanel ID invalid"
+                break
         else:
             await chat.reply_text("Wrong Channel ID")
             continue
