@@ -41,9 +41,9 @@ async def run(bot, message):
             try:
                 global channel_id_
                 channel_id_=int(channel)
+                break
             except:
                 await bot.send_message(message.from_user.id, "Fuck 😠... Chanel ID invalid"
-                break
         else:
             await chat.reply_text("Wrong Channel ID")
             continue
