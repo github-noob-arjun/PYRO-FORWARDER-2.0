@@ -1,3 +1,6 @@
+import math
+import time 
+
 def convert(seconds):
     seconds = seconds % (24 * 3600)
     hour = seconds // 3600
