@@ -173,16 +173,16 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     if media is not None:
                         file_type = file_type
                         id=media.file_id
-                        file_name=media.file_name
+                        file_name=media.file_name.replace("_", " ")
                         break
                 else:
                     id=f"{FROM}_{msg.message_id}"
                     file_type="others"
             
-            file_caption = msg_caption.format(filename=file_name, filesize=humanize.naturalsize(media.file_size))
+            file_caption = f"**{file_name}**\n\n{msg_caption}"
             message_id=msg.message_id
             try:
-                aynav, vnay = await save_data(id, channel, message_id, methord, msg_caption, file_type)
+                aynav, vnay = await save_data(id, channel, message_id, methord, file_caption, file_type)
                 if aynav:
                     total_files += 1
                 elif vnay == 0:
