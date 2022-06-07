@@ -9,6 +9,8 @@ import random
 from pyrogram.errors.exceptions.bad_request_400 import FileReferenceEmpty, FileReferenceExpired, MediaEmpty
 import pytz
 from datetime import datetime
+import humanize
+from plugins import convert
 
 IST = pytz.timezone(Config.TIME_ZONE) # Asia/Kolkata
 MessageCount = 0
@@ -54,6 +56,18 @@ async def forward(bot, message):
     if 2 in status:
         await message.reply_text("Sleeping the engine for avoiding ban.")
         return
+    while True:
+        try:
+            get_caption = await bot.ask(text = "Do you need a custom caption?\n\nIf yes , Send me caption \n\nif No send '0'", chat_id = query.from_user.id, filters=filters.text, timeout=30)
+        except TimeoutError:
+            await bot.send_message(query.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
+            return
+        input=get_caption.text
+        if input == "0":
+            caption=None
+        else:
+            caption=input
+        break
     m=await bot.send_message(chat_id=OWNER, text="✓ Started Forwarding")
     datetime_ist = datetime.now(IST)
     FSTIME = datetime_ist.strftime("%I:%M:%S %p - %d %B %Y")
@@ -69,7 +83,7 @@ async def forward(bot, message):
             file_id=msg.id
             message_id=msg.message_id
             methord = msg.methord
-            caption = msg.caption
+            caption = msg.caption.format(filename=msg.file_name, filesize=humanize.naturalsize(msg.file_size))
             file_type = msg.file_type
             chat_id=Config.TO_CHANNEL
             if methord == "bot":
