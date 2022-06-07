@@ -31,55 +31,23 @@ async def run(bot, message):
         return
     while True:
         try:
-            chat = await bot.ask(text = "To Index a channel you may send me the channel invite link, so that I can join channel and index the files.\n\nIt should be something like <code>https://t.me/xxxxxx</code> or <code>https://t.me/joinchat/xxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
-            channel=chat.text
-            await chat.delete()
+            id = await bot.ask(text = "Since this is a Private channel I need Channel id, Please send me channel ID\n\nIt should be something like <code>-100xxxxxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
+            channel=id.text
         except TimeoutError:
             await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
             return
-
-        pattern=".*https://t.me/.*"
-        result = re.match(pattern, channel, flags=re.IGNORECASE)
-        if result:
-            print(channel)
-            break
-        else:
-            await chat.reply_text("Wrong URL")
-            continue
-
-    if '+' in channel:
-        global channel_type
-        channel_type="private"
-        try:
-            await bot.USER.join_chat(channel)
-        except UserAlreadyParticipant:
-            pass
-        except InviteHashExpired:
-            await chat.reply_text("Wrong URL or User Banned in channel.")
-            return
-        while True:
+        channel=id.text
+        if channel.startswith("-100"):
             try:
-                id = await bot.ask(text = "Since this is a Private channel I need Channel id, Please send me channel ID\n\nIt should be something like <code>-100xxxxxxxxx</code>", chat_id = message.from_user.id, filters=filters.text, timeout=30)
-                channel=id.text
-            except TimeoutError:
-                await bot.send_message(message.from_user.id, "Error!!\n\nRequest timed out.\nRestart by using /index")
-                return
-            channel=id.text
-            if channel.startswith("-100"):
                 global channel_id_
                 channel_id_=int(channel)
                 break
-            else:
-                await chat.reply_text("Wrong Channel ID")
-                continue
-
-            
-    else:
-        #global channel_type
-        channel_type="public"
-        channel_id = re.search(r"t.me.(.*)", channel)
-        #global channel_id_
-        channel_id_=channel_id.group(1)
+            except:
+                await bot.send_message(message.from_user.id, "Fuck 😠... Chanel ID invalid")
+                return
+        else:
+            await chat.reply_text("Wrong Channel ID")
+            continue
 
     while True:
         try:
@@ -182,14 +150,9 @@ async def cb_handler(bot: Client, query: CallbackQuery):
     FROM=channel_id_
     try:
         async for MSG in bot.USER.search_messages(chat_id=FROM,offset=skip_no,limit=limit_no,filter=filter):
-            if channel_type == "public":
-                methord="bot"
-                channel=FROM
-                msg=await bot.get_messages(FROM, MSG.message_id)
-            elif channel_type == "private":
-                methord="user"
-                channel=str(FROM)
-                msg=await bot.USER.get_messages(FROM, MSG.message_id)
+            methord="user"
+            channel=str(FROM)
+            msg=await bot.USER.get_messages(FROM, MSG.message_id)
             msg_caption=""
             if caption is not None:
                 msg_caption=caption
