@@ -179,7 +179,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     id=f"{FROM}_{msg.message_id}"
                     file_type="others"
             
-            file_caption = msg_caption.format(filename=file_name, filesize=humanize.naturalsize(media.file_size), duration=convert(duration))
+            file_caption = msg_caption.format(filename=file_name, filesize=humanize.naturalsize(media.file_size))
             message_id=msg.message_id
             try:
                 aynav, vnay = await save_data(id, channel, message_id, methord, msg_caption, file_type)
