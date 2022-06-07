@@ -367,4 +367,3 @@ async def forward(bot, message):
     MessageCount=0
 
 
-
