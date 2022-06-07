@@ -178,9 +178,8 @@ async def cb_handler(bot: Client, query: CallbackQuery):
                     file_type="others"
             
             message_id=msg.message_id
-            file_caption = f"{file_name}\n\n{msg_caption}"
             try:
-                aynav, vnay = await save_data(id, channel, message_id, methord, file_caption, file_type)
+                aynav, vnay = await save_data(id, channel, message_id, methord, msg_caption, file_type)
                 if aynav:
                     total_files += 1
                 elif vnay == 0:
