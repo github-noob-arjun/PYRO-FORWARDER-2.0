@@ -2,6 +2,7 @@ TgCrypto
 Pyrogram==1.4.16
 Dnspython
 pyromod
+humanize
 umongo==2.3.0
 motor==2.3.0
 pytz
