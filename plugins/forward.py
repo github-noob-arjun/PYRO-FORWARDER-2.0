@@ -10,7 +10,7 @@ from pyrogram.errors.exceptions.bad_request_400 import FileReferenceEmpty, FileR
 import pytz
 from datetime import datetime
 
-IST = pytz.timezone('Asia/Kolkata')
+IST = pytz.timezone(Config.TIME_ZONE) # Asia/Kolkata
 MessageCount = 0
 BOT_STATUS = "0"
 status = set(int(x) for x in (BOT_STATUS).split())
@@ -365,6 +365,5 @@ async def forward(bot, message):
     except:
         pass
     MessageCount=0
-
 
 
