@@ -71,7 +71,7 @@ async def forward(bot, message):
             file_id=msg.id
             message_id=msg.message_id
             methord = msg.methord
-            caption = msg.caption.format(filename=msg.file_name, filesize=humanize.naturalsize(msg.file_size))
+            caption = msg.caption
             file_type = msg.file_type
             chat_id=Config.TO_CHANNEL
             if methord == "bot":
