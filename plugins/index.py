@@ -159,7 +159,7 @@ async def cb_handler(bot: Client, query: CallbackQuery):
             if caption is not None:
                 msg_caption=caption
             elif msg.caption:
-                msg_caption=msg.caption
+                msg_caption=""
             if filter in ("document", "video", "audio", "photo"):
                 for file_type in ("document", "video", "audio", "photo"):
                     media = getattr(msg, file_type, None)
